@@ -1,0 +1,31 @@
+version: '2'
+services:
+  smokeping-parent:
+    build: smokeping-parent/
+    image: smokeping-parent
+    restart: always
+    networks:
+      - smokeping_network
+    ports:
+      - "80:80"
+    volumes:
+      - smokeping_data:/data
+      - ./smokeping-parent/config:/config
+
+  smokeping-child:
+    build: smokeping-child
+    hostname: smokeping-child
+    networks:
+      - smokeping_network
+    volumes:
+      - ./smokeping-child/config:/config
+    environment:
+      SMOKEPING_MASTER_URL: "http://smokeping-parent/smokeping/smokeping.cgi"
+    depends_on:
+      - smokeping-parent
+
+networks:
+  smokeping_network:
+
+volumes:
+  smokeping_data:

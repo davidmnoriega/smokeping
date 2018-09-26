@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+exec s6-setuidgid abc  /usr/bin/smokeping --master-url=$SMOKEPING_MASTER_URL --cache-dir=/var/smokeping --shared-secret=/config/secret.txt --nodaemon

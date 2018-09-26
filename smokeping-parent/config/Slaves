@@ -1,0 +1,6 @@
+*** Slaves ***
+secrets=/config/smokeping_secrets
+
++smokeping-child
+display_name=child
+color=00ff00
